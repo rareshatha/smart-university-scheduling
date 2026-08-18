@@ -1,68 +1,204 @@
-# **Smart University Schedule (SUS)**
+# Smart University Scheduling System
 
-## **Project Overview**
+## Overview
 
-The Smart University Schedule (SUS) is an intelligent scheduling system designed to revolutionize university timetabling. It leverages hybrid optimization algorithms (including BBO, GA, and SA) to generate conflict-free schedules, effectively resolving common academic scheduling challenges. The system provides a seamless, interactive platform for both administrators and faculty members to manage, request, and approve class slots in real-time.
+The **Smart University Scheduling System** is a graduation project developed to improve and simplify the process of creating university timetables.
 
-## **Key Features**
+Creating a university schedule can be challenging because it involves coordinating courses, instructors, classrooms, available time slots, and different scheduling requirements. Managing these factors manually can be time-consuming and may result in scheduling conflicts.
 
-* **Intelligent Optimization Engine:** Generates conflict-free schedules using hybrid AI optimization algorithms (BBO, GA, and SA).
-* **Admin Dashboard:**
-    * **Registry Visualization:** Full view of the academic registry with multi-filter options (Department, Term).
-    * **Live Conflict Detection:** Real-time identification and highlighting of room and instructor booking conflicts.
-    * **Request Management:** Centralized system to Approve or Reject incoming class slot requests with custom feedback notes.
-    * **Interactive Time-Grid:** A dynamic, searchable visual grid for immediate schedule assessment.
-    * **Data Export:** Secure CSV export capabilities for both filtered search results and the full academic registry.
-* **Instructor Portal:**
-    * **Personalized Schedule:** Instructors can view their specific courses and assigned slots.
-    * **Dynamic Slot Requesting:** Faculty can request new class slots with automatic "Room Availability" checking based on real-time data.
-    * **Status Tracking:** Real-time feedback loop showing the status of requests (Pending, Approved, or Rejected) with administrative notes.
-* **Visitor Portal:**
-    * **Public Schedule Browsing:** Allows students and guests to view university schedules and course offerings in a user-friendly, read-only interface.
-    * **Search & Filter:** Easily find courses by subject, department, or instructor without needing authentication.
-* **Authentication & Communication:**
-    * **Secure Access:** Dedicated login/auth system for administrators and faculty.
-    * **Contact Interface:** An integrated contact page for support and feedback, synchronized with the system's database.
-* **Data Integrity & Pipeline:**
-    * **Real-time Request Pipeline:** Persistent storage and synchronization between the Flask backend and the CSV database.
-    * **Data Mapping:** Seamless integration of class sections, room capacities, and course codes directly into the interface.
-* **Analytical Support:** Visual load charts for class distribution across the week to assist in administrative decision-making.
+This project provides a smart approach to generating university schedules while considering the required constraints and available resources.
 
-## **Technical Stack**
+## Problem Statement
 
-* **Frontend:** HTML5, Bootstrap 5, CSS3, JavaScript (ES6+).  
-* **Backend:** Python (Flask).  
-* **Data Processing:** Pandas (for Excel/CSV management).  
-* **Optimization Core:** Python-based algorithms (stored in optimizationCodes/).  
-* **Grid Engine:** A custom-built JavaScript Time-Grid Engine (SUS v7.0) for high-precision scheduling.
+University scheduling requires coordinating a large number of courses, instructors, classrooms, and time slots. Manual scheduling can be difficult to manage and may lead to issues such as:
 
-## **Project Structure**
+* Course conflicts
+* Instructor scheduling conflicts
+* Classroom conflicts
+* Incorrect classroom capacity assignments
+* Uneven distribution of courses
+* Difficulty modifying existing schedules
 
-SUS3\_PROJECT/  
-├── app.py                \# Main Flask server application  
-├── data/                 \# Academic data (Excel files)  
-├── optimizationCodes/    \# AI optimization algorithms (BBO, GA, SA)  
-├── static/  
-│   ├── css/              \# Styling sheets  
-│   ├── js/               \# Frontend logic (Admin, Instructor, TimeGrid Engine)  
-│   └── images/           \# Assets and logos  
-├── templates/            \# HTML user interfaces  
-└── instructor\_slots\_requests.csv \# Real-time request database.  
-    
+The goal of this project is to make the scheduling process more efficient, organized, and easier to manage.
 
-## **Setup and Execution**
+## Project Objectives
 
-To run the project, ensure you have Python 3 installed. Follow these steps:
+The main objectives of the project are to:
 
-1. **Install Dependencies:** Open your terminal in the project directory and run:  
-   pip install flask flask-cors pandas  
-2. **Launch the Application:** Run the following command:  
-   python3 app.py  
-3. **Access the System:** Open your web browser and navigate to: [http://127.0.0.1:5001](http://127.0.0.1:5001)
+* Automate the university scheduling process.
+* Reduce scheduling conflicts.
+* Assign courses to suitable classrooms and time slots.
+* Consider instructor availability.
+* Improve the use of available university resources.
+* Generate clear and organized timetables.
+* Reduce the time required to create and modify schedules.
 
-## **Team**
+## Main Features
 
-* **Student:** Ibtihal Fallatah, Roaa Almadani, Sadan Abuouf, Shatha Mahrous, Lama Wassabi.
-* **Student:** Dr.Abdelaziz Hammouri, Dr.Rami Jomaa.
-* **Major:** Artificial Intelligence  
-* **Institution:** Prince Mugrin University
+* Course and section management
+* Instructor management
+* Classroom management
+* Time slot management
+* Scheduling constraint management
+* Automatic schedule generation
+* Conflict detection
+* Schedule visualization
+* Schedule modification and management
+
+## How It Works
+
+The system follows several steps to generate the final schedule:
+
+1. Collect the required scheduling information.
+2. Define courses, instructors, classrooms, and available time slots.
+3. Apply the required scheduling constraints.
+4. Generate possible scheduling arrangements.
+5. Check the generated schedules for conflicts.
+6. Select a suitable schedule based on the defined requirements.
+7. Display the final schedule in an organized format.
+
+## Scheduling Constraints
+
+The system considers different types of constraints when generating the schedule.
+
+### Hard Constraints
+
+Hard constraints are requirements that must be satisfied:
+
+* An instructor cannot teach two courses at the same time.
+* A classroom cannot be assigned to more than one course at the same time.
+* A classroom must have enough capacity for the assigned course.
+* Courses must be assigned to available time slots.
+* Required course sessions must be included in the schedule.
+
+### Soft Constraints
+
+Soft constraints are preferences that help improve the quality of the generated schedule:
+
+* Better distribution of courses throughout the week.
+* Reducing unnecessary gaps between classes.
+* Considering instructor preferences when possible.
+* Improving classroom utilization.
+* Creating a more balanced timetable.
+
+## Technologies Used
+
+* Python
+* Artificial Intelligence
+* Optimization Techniques
+* Git & GitHub
+
+## Project Structure
+
+```text
+Smart-University-Scheduling/
+│
+├── data/
+├── src/
+├── models/
+├── notebooks/
+├── tests/
+├── requirements.txt
+└── README.md
+```
+
+## Getting Started
+
+### Requirements
+
+Before running the project, make sure you have:
+
+* Python 3.x
+* Git
+* The required Python libraries listed in `requirements.txt`
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
+```
+
+Move to the project directory:
+
+```bash
+cd YOUR-REPOSITORY
+```
+
+Install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Running the Project
+
+Run the main application using:
+
+```bash
+python main.py
+```
+
+> Replace `main.py` with the actual entry point of the project if your main file has a different name.
+
+## Results
+
+The system provides an automated approach to university timetable generation while considering the main scheduling requirements and constraints.
+
+The generated schedules can be evaluated based on:
+
+* Number of scheduling conflicts
+* Constraint satisfaction
+* Classroom utilization
+* Instructor availability
+* Overall schedule quality
+
+## Project Screenshots
+
+### Main Interface
+
+Add a screenshot of the main interface here.
+
+### Generated Schedule
+
+Add a screenshot of the generated university schedule here.
+
+## Future Improvements
+
+Future versions of the system could include:
+
+* Supporting larger and more complex university datasets.
+* Adding more scheduling constraints and preferences.
+* Improving the scheduling and optimization process.
+* Adding detailed schedule analytics.
+* Integrating the system with existing university information systems.
+* Developing a mobile version of the system.
+* Adding personalized schedules for students and instructors.
+
+## Academic Project
+
+This project was developed as a graduation project as part of the requirements for the **Bachelor's Degree in Artificial Intelligence**.
+
+**Project:** Smart University Scheduling System
+**Year:** 2026
+**Program:** Artificial Intelligence
+**University:** University of Prince Mugrin
+
+## Team
+
+This project was developed by:
+
+* Shatha Mahrous
+* Sadan Abuouf
+* Lama Wassabi
+* Ibtihal Fallatah
+* Roaa Almdani
+
+## Acknowledgments
+
+We would like to thank our project supervisor, faculty members, and the **University of Prince Mugrin** for their guidance and support throughout the development of this project.
+
+## License
+
+This project was developed for academic purposes.
