@@ -1,0 +1,98 @@
+
+:root { 
+    --bg-beige: #FAF9F6;           
+    --olive-green: #90a17d;        
+    --olive-green-hover: #a3b58f;  
+    --navy-blue: #2c3e50;          
+    --navy-blue-hover: #3d5a75;    
+    --danger-red: #e74c3c;        
+    --danger-red-hover: #ff5e4d;   
+    --time-bg-light: #f1f4ef;      
+    --border-light: #f0f0f0;       
+    --text-muted: #7f8c8d;         
+}
+
+body { 
+    background-color: var(--bg-beige); 
+    font-family: 'Poppins', sans-serif; 
+    margin: 0; 
+    padding-top: 120px; 
+    overflow-x: hidden; 
+}
+
+.navbar { 
+    background-color: var(--bg-beige); 
+    padding: 20px 80px; 
+    box-shadow: 0 2px 15px rgba(0,0,0,0.03); 
+    width: 100%; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    z-index: 1000; 
+    display: flex; 
+    align-items: center; 
+}
+
+.navbar-brand img { 
+    max-width: 160px; 
+    cursor: pointer; 
+}
+
+.nav-links-center { 
+    flex: 2; 
+    display: flex; 
+    justify-content: center; 
+    gap: 45px; 
+}
+
+.nav-link-custom { 
+    text-decoration: none; 
+    color: var(--navy-blue); 
+    font-weight: 500; 
+    font-size: 1.1rem;
+    transition: 0.3s ease; 
+}
+
+.nav-link-custom:hover { 
+    color: var(--olive-green) !important; 
+    transform: scale(1.05); 
+}
+
+.btn-login-nav { 
+    background-color: var(--olive-green); 
+    color: white !important; 
+    padding: 12px 35px; 
+    border-radius: 14px; 
+    font-weight: 600; 
+    text-decoration: none; 
+    display: inline-block;
+    transition: all 0.3s ease; 
+    border: none; 
+}
+
+.btn-login-nav:hover { 
+    transform: translateY(-3px); 
+    background-color: var(--olive-green-hover) !important; 
+    box-shadow: 0 5px 15px rgb(163, 181, 143); 
+}
+
+.btn-logout-nav { 
+    background-color: var(--danger-red); 
+    color: white !important; 
+    padding: 12px 35px; 
+    border-radius: 14px; 
+    font-weight: 600; 
+    text-decoration: none; 
+    display: inline-block;
+    transition: all 0.3s ease;
+    border: none; 
+}
+
+.btn-logout-nav:hover { 
+    transform: translateY(-3px); 
+    background-color: var(--danger-red-hover) !important; 
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3); 
+}
+
+
+

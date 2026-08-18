@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Admin Portal | SUS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+    <nav class="navbar px-5">
+        <div class="navbar-brand"><a href="#"><img src="{{ url_for('static', filename='images/image_1.png') }}" alt="Logo"></a></div>
+        <a href="/login_page" class="btn-logout-nav" onclick="localStorage.removeItem('activeDataset')">Logout</a>
+    </nav>
+
+    <div class="container-fluid px-5 pt-4">
+        <div class="p-4 mb-4 rounded-4 shadow-sm border-0 d-flex align-items-center justify-content-between" 
+             style="background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: white;">
+            <div>
+                <h1 class="fw-bold mb-1" style="font-family: 'Poppins', sans-serif; letter-spacing: 0.5px;">Welcome Back, Admin! 👋</h1>
+                <p class="mb-0 text-white-50 fw-light" style="font-size: 0.95rem;">SUS AI Core Platform engaged. You have full access to schedule optimization, database parameters, and matrix registry.</p>
+            </div>
+            <div class="pe-3 d-none d-md-block"><i class="fa-solid fa-user-shield fa-3x text-white-50"></i></div>
+        </div>
+    </div>
+
+    <div class="container-fluid px-5">
+        <div class="optimization-card-standalone mb-4 p-4 rounded-4 shadow-sm bg-white border">
+            <div class="row g-3 align-items-center">
+                <div class="col-12 mb-2 border-bottom pb-2">
+                    <h4 class="fw-bold text-navy mb-1"><i class="fa-solid fa-wand-magic-sparkles me-2"></i> Hybrid Optimization Engine</h4>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label small fw-bold text-navy mb-1">Target Dataset (Term)</label>
+                    <select class="form-select border-navy fw-bold" id="internalDataset">
+                        <option value="Fall 2024 - 2421.xlsx">Fall 2024 - 2421.xlsx</option>
+                        <option value="Spring 2025 - 2422.xlsx">Spring 2025 - 2422.xlsx</option>
+                        <option value="Fall 2025 - 2521.xlsx">Fall 2025 - 2521.xlsx</option>
+                        <option value="Spring 2026 - 2522.xlsx">Spring 2026 - 2522.xlsx</option>
+                    </select>
+                </div>
+                <div class="col-md-5">
+                    <label class="form-label small fw-bold text-navy mb-1">Optimization Algorithm Script</label>
+                    <select id="optimizationScript" class="form-select border-navy fw-bold">
+                        <option value="unisa_modified_copy.py">Comprehensive Optimization Engine (Standard)</option>
+                            <option value="hybrid_ga_sa_unisa_copy.py">Hybrid Genetic Algorithm + Simulated Annealing (GA + SA)</option>
+                            <option value="hybrid_sa_bbo_unisa.py">Hybrid Simulated Annealing + Biogeography-Based (SA + BBO)</option>
+                            <option value="BBO02.py">Biogeography-Based Optimization Engine (UniBBO)</option>
+                            <option value="GA022.py">Pure Genetic Algorithm Engine (UniGA)</option>
+                    </select>
+                </div>
+                <div class="col-md-3 align-self-end">
+                    <button class="btn btn-dark fw-bold w-100 py-2" onclick="runOptimization()"><i class="fa-solid fa-play me-2"></i> Run Engine</button>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <div class="container-fluid px-5 mt-4">
+        <div class="d-flex justify-content-between align-items-end mb-4">
+            <div>
+                <h1 class="main-admin-title mb-0">Master Control Dashboard</h1>
+                <p class="text-muted small">System Registry Analysis & Optimization</p>
+            </div>
+            <div class="d-flex gap-3">
+                <div>
+                    <label class="small fw-bold text-navy mb-1 d-block">Academic Term</label>
+                    <select class="form-select form-select-custom shadow-sm" id="termSelect">
+                        <option value="Fall 2024 - 2421">Fall 2024 - 2421</option>
+                        <option value="Spring 2025 - 2422">Spring 2025 - 2422</option>
+                        <option value="Fall 2025 - 2521">Fall 2025 - 2521</option>
+                        <option value="Spring 2026 - 2522">Spring 2026 - 2522</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="small fw-bold text-navy mb-1 d-block">Department</label>
+                    <select class="form-select form-select-custom shadow-sm" id="deptFilter">
+                        <option value="all">All Departments</option>
+                        <option value="AI">Artificial Intelligence</option>
+                        <option value="SE">Software Engineering</option>
+                        <option value="FC">Cybersecurity</option>
+                        <option value="CS">Computer Science</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-4"><div class="stat-card p-4 shadow-sm bg-white rounded-4 border-0"><h6 class="text-muted small fw-bold">Total Courses</h6><h2 class="display-6 fw-bold text-navy mb-0" id="totalCourses">0</h2></div></div>
+            <div class="col-md-4"><div class="stat-card p-4 shadow-sm bg-white rounded-4 border-0"><h6 class="text-muted small fw-bold">Total Rooms</h6><h2 class="display-6 fw-bold text-navy mb-0" id="totalRooms">0</h2></div></div>
+            <div class="col-md-4"><div class="stat-card p-4 shadow-sm bg-white rounded-4 border-0"><h6 class="text-muted small fw-bold">Total Instructors</h6><h2 class="display-6 fw-bold text-navy mb-0" id="totalInstructors">0</h2></div></div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="admin-section mb-4 shadow-sm">
+                    <h6 class="fw-bold mb-3"><i class="fa fa-search me-2"></i> Smart Registry Search</h6>
+                    <input type="text" id="globalSearchInput" class="form-control mb-2" placeholder="Type Instructor, Course Name, or Room...">
+                    <button class="btn btn-dark w-100 fw-bold" id="deepSearchBtn"><i class="fa-solid fa-magnifying-glass me-1"></i> Deep Search</button>
+                </div>
+                <div class="admin-section border-start border-danger border-4 shadow-sm">
+                    <h6 class="fw-bold text-danger mb-3"><i class="fa-solid fa-triangle-exclamation me-2"></i> Conflict Detailed Log</h6>
+                    <div id="conflictBox" class="detailed-conflicts"></div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="admin-section mb-4 shadow-sm"><div class="chart-container" style="height: 350px;"><canvas id="loadChart"></canvas></div></div>
+                <div class="admin-section shadow-sm border-start border-primary border-4">
+                    <h6 class="fw-bold mb-3 text-primary"><i class="fa fa-envelope-open-text me-2"></i> Incoming Slot Requests</h6>
+                    <div id="requestBox" class="detailed-conflicts" style="max-height: 230px;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="visualGridWrapperPanel" style="display: none; margin-top: 40px;">
+            <div class="admin-section mb-4 shadow-sm">
+                <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+                    <h6 class="fw-bold mb-0 text-navy"><i class="fa-solid fa-calendar-days me-2 text-danger"></i> SUS Intelligent Filtered Time-Grid</h6>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-success btn-sm rounded-pill px-3 fw-bold" id="exportExcelBtn"><i class="fa-solid fa-file-csv me-1"></i> Export Filtered CSV</button>
+                        <button class="btn btn-danger btn-sm rounded-circle d-flex align-items-center justify-content-center shadow-sm" id="closeGridPanelBtn" style="width: 32px; height: 32px; padding:0;"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                </div>
+                <div id="susTimeGridContainer" class="mb-4"></div>
+            </div>
+        </div>
+
+        <div class="admin-section shadow-sm mt-5 mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-2">
+                <h5 class="fw-bold text-navy mb-0"><i class="fa-solid fa-database me-2"></i> Complete Academic Registry (Mastersheet)</h5>
+                <button class="btn btn-outline-dark btn-sm rounded-pill px-3 fw-bold" id="exportRegistryCSVBtn">
+                    <i class="fa-solid fa-file-csv me-1"></i> Export Registry CSV
+                </button>
+            </div>
+            <div class="table-card table-responsive">
+                <table class="uni-table text-center w-100" id="fullTable">
+                    <thead>
+                        <tr>
+                            <th>Term ID</th><th>Course Code</th><th>Course Title</th><th>Section</th><th>Instructor</th><th>Instructor ID</th><th>Room</th><th>Day</th><th>Time Frame</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    
+<script src="{{ url_for('static', filename='js/core.js') }}"></script>
+<script src="{{ url_for('static', filename='js/sus_timegrid_engine.js') }}"></script>
+<script src="{{ url_for('static', filename='js/admin_logic.js') }}"></script>
+<script src="{{ url_for('static', filename='js/optimization.js') }}"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        if (typeof initAdminDashboard === 'function') initAdminDashboard();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+.visitor-hero {
+    text-align: center;         
+    padding: 60px 0 40px 0;   
+}
+
+.visitor-hero h2 {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 3.5rem;          
+    color: var(--navy-blue);
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.visitor-hero p {
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-muted);   
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+}
+
+.schedule-container {
+    background-color: #FAF9F6;  
+    border-radius: 30px;        
+    padding: 40px;              
+    margin-bottom: 60px;        
+    border: 1px solid rgba(0,0,0,0.02); 
+}
+
+.filter-card {
+    background: white;
+    border-radius: 25px;        
+    padding: 35px;              
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03); 
+    border: none;              
+    margin-bottom: 30px;        
+}
+
+.filter-card label {
+    font-weight: 700;
+    color: var(--navy-blue);
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+}
+
+.table-card {
+    background: white;
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+    border: none;
+}
+
+.uni-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.uni-table th {
+    background: #ffffff;
+    color: var(--navy-blue);
+    font-weight: 700;
+    padding: 20px;
+    font-size: 0.9rem;
+    border-bottom: 2px solid var(--olive-green); 
+    text-align: center;
+}
+
+.uni-table td {
+    padding: 22px 15px;         
+    vertical-align: middle;
+    text-align: center;
+    border-bottom: 1px solid #f9f9f9; 
+    color: #444;
+}
+
+.tag-day {
+    background-color: var(--navy-blue);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    margin: 2px;
+    display: inline-block;
+}
+
+.tag-time {
+    background-color: var(--time-bg-light);
+    color: var(--olive-green);
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: inline-block;
+    white-space: nowrap;     
+    min-width: max-content;
+}
+
+.uni-table .badge {
+    background-color: var(--time-bg-light) !important; 
+    color: var(--olive-green) !important; 
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    border: none !important;      
+    box-shadow: none !important;  
+    outline: none !important;     
+}
+
+.uni-table tbody tr:hover {
+    background-color: #fafafa;
+    transition: 0.2s ease;
+}

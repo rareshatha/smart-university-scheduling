@@ -1,0 +1,48 @@
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 80vh;
+    padding: 0 100px;
+    gap: 60px;
+}
+
+.brand-name { 
+    font-family: 'Playfair Display', serif; 
+    font-size: 3.5rem; 
+    color: var(--olive-green); 
+    margin-bottom: 30px; 
+}
+
+.visitor-area {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #f0f0f0; 
+}
+
+.visitor-area p {
+    color: #7f8c8d;
+    margin-bottom: 25px; 
+}
+
+.btn-visitor-main {
+    background-color: var(--navy-blue) !important;
+    color: white !important;
+    border-radius: 14px;
+    padding: 16px 45px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-visitor-main:hover {
+    background-color: var(--navy-blue-hover) !important; 
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 25px rgba(44, 62, 80, 0.3);
+}
+
+.hero-image-side img { 
+    max-width: 100%; 
+    filter: drop-shadow(0 25px 40px rgba(0,0,0,0.08)); 
+}

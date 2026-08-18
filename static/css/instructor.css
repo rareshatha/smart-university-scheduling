@@ -1,0 +1,207 @@
+body {
+    background-color: var(--bg-beige);
+    font-family: 'Poppins', sans-serif;
+}
+
+.welcome-section {
+    padding: 20px 0;
+    border-bottom: 2px solid rgba(0,0,0,0.02);
+}
+
+.welcome-title {
+    font-weight: 700;
+    color: var(--navy-blue);
+    font-size: 2.2rem;
+}
+
+.welcome-id {
+    font-size: 0.95rem;
+    color: var(--olive-green);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.instructor-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.course-list-vertical {
+    max-height: 80px;
+    overflow-y: auto;
+    padding: 2px;
+}
+
+.form-select-custom {
+    border-radius: 12px;
+    border: 1px solid #eee;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    color: var(--navy-blue);
+    cursor: pointer;
+}
+
+.grid-container {
+    display: flex !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 960px;
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid #eef2f5;
+    position: relative;
+    clear: both;
+    margin-bottom: 40px;
+}
+
+.time-axis {
+    min-width: 85px !important;
+    width: 85px !important;
+    display: flex;
+    flex-direction: column;
+    background: #f8f9fa;
+    border-right: 1px solid #ebedf0;
+    padding-top: 45px;
+    flex-shrink: 0;
+}
+
+.time-label {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #888;
+    border-bottom: 1px solid rgba(0,0,0,0.02);
+}
+
+.day-column {
+    flex: 1 0 0% !important;
+    position: relative;
+    min-width: 180px;
+    border-right: 1px solid #f0f2f5;
+}
+
+.day-header {
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    padding: 12px 0;
+    background: var(--navy-blue);
+    color: white;
+    border-bottom: 2px solid rgba(0,0,0,0.05);
+}
+
+.course-block-floating {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    background-color: #f1f8f4;
+    border: 1px solid #d4e3d9;
+    border-left: 4px solid var(--olive-green);
+    border-radius: 8px;
+    overflow: visible !important;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.course-block-floating:hover {
+    z-index: 100;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.block-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.block-title-clean {
+    font-weight: 700;
+    font-size: 0.75rem;
+    color: var(--navy-blue);
+    line-height: 1.2;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.block-room-clean {
+    font-size: 0.65rem;
+    color: #555;
+    font-weight: 600;
+}
+
+.course-cell {
+    position: relative !important;
+    cursor: pointer !important;
+}
+
+.course-cell * {
+    pointer-events: none !important;
+}
+
+.course-tooltip {
+    display: block !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    position: absolute !important;
+    bottom: 105% !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(10px) !important;
+    width: 290px !important;
+    background-color: #1a2a3a !important;
+    color: #ffffff !important;
+    padding: 16px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35) !important;
+    z-index: 999999 !important;
+    text-align: left !important;
+    font-size: 0.8rem !important;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, visibility 0.2s !important;
+}
+
+.course-cell:hover .course-tooltip {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateX(-50%) translateY(0) !important;
+}
+
+.course-tooltip h6 {
+    font-size: 0.92rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 10px !important;
+    font-weight: 700 !important;
+}
+
+.course-tooltip p {
+    margin-bottom: 6px !important;
+    font-size: 0.78rem !important;
+    color: #e0e6ed !important;
+    line-height: 1.4 !important;
+}
+
+.course-tooltip p strong {
+    color: #8eb4cb !important;
+}
+
+.admin-section {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+}
+
+.btn-outline-secondary:hover {
+    opacity: 0.85;
+}

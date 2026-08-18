@@ -1,0 +1,162 @@
+#contactHeader .contact-main-title {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 3.5rem;
+    color: var(--olive-green); 
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+#contactHeader .text-muted {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-muted) !important;
+}
+
+.contact-container {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+.info-card {
+    background: white !important;
+    border-radius: 30px !important; 
+    padding: 40px !important;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.02) !important;
+    border: none !important;
+    height: 100%;
+}
+
+.form-heading, .info-card h6 {
+    color: var(--navy-blue);
+    font-weight: 700;
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+}
+
+#contactForm .form-control {
+    background-color: #fcfcfc !important;
+    border: 1px solid #f0f0f0 !important;
+    border-radius: 15px !important;
+    padding: 15px 20px !important;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+#contactForm .form-control:focus {
+    border-color: var(--olive-green) !important;
+    box-shadow: none !important;
+    background-color: white !important;
+}
+
+.btn-send {
+    background-color: var(--navy-blue) !important;
+    color: white !important;
+    width: 100%;
+    padding: 15px;
+    border-radius: 15px;
+    border: none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.btn-send:hover {
+    background-color: var(--navy-blue-hover) !important;
+    transform: translateY(-2px);
+}
+
+.info-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 35px;
+    align-items: flex-start;
+}
+
+.info-item i {
+    color: var(--olive-green);
+    background: #f1f4ef; 
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.info-item h6 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.info-item p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons a i {
+    color: var(--navy-blue);
+    font-size: 1.5rem;
+    transition: 0.3s;
+}
+
+.social-icons a:hover i {
+    color: var(--olive-green);
+}
+
+.map-section {
+    margin-top: 50px;
+    height: 450px;
+    border-radius: 30px; 
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+}
+
+#successCard {
+    display: none; 
+    text-align: center;
+    padding: 40px 20px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.success-icon {
+    font-size: 5rem;
+    color: var(--olive-green);
+    margin-bottom: 20px;
+    animation: scaleUp 0.5s ease-out;
+}
+
+.success-title {
+    color: var(--navy-blue);
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.btn-home {
+    display: inline-block;
+    background-color: var(--olive-green);
+    color: white !important;
+    padding: 12px 30px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 25px;
+    transition: 0.3s;
+}
+
+.btn-home:hover {
+    background-color: var(--olive-green-hover);
+    transform: translateY(-3px);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

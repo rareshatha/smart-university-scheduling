@@ -1,0 +1,100 @@
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-beige); 
+    padding: 20px;
+}
+
+.login-card.wide-card {
+    background: white;
+    width: 100%;
+    max-width: 1000px;
+    min-height: 580px;
+    border-radius: 40px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.06);
+    display: flex;
+    overflow: hidden;
+}
+
+.form-side {
+    flex: 0 0 60%;
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.login-form-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.login-main-title {
+    font-family: 'Playfair Display', serif !important; 
+    font-size: 2.5rem;
+    color: var(--navy-blue);
+    font-weight: 700;
+}
+
+.welcome-side {
+    flex: 0 0 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; 
+    background-color: white;
+    border-left: 1px solid #f2f2f2;
+}
+
+.login-inner-logo {
+    width: 100%; 
+    max-width: 1000px; 
+    height: auto;
+    display: block;
+    position: relative;
+    left: 5px; 
+}
+
+.login-field {
+    background-color: #fcfcfc !important;
+    border: 1.5px solid #f2f2f2 !important;
+    border-radius: 15px !important;
+    padding: 14px 20px !important;
+}
+
+.btn-auth {
+    background-color: var(--navy-blue) !important;
+    color: white !important;
+    padding: 16px;
+    border-radius: 15px;
+    border: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: 0.3s ease;
+}
+
+.btn-auth:hover {
+    background-color: var(--navy-blue-hover) !important;
+    transform: translateY(-3px);
+}
+
+.forgot-link-wrapper {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.admin-link-custom {
+    color: var(--olive-green) !important;
+    text-decoration: none;
+    font-weight: 700;
+    margin-left: 5px;
+}
+
+@media (max-width: 850px) {
+    .welcome-side { display: none; }
+    .form-side { flex: 0 0 100%; border-right: none; }
+}

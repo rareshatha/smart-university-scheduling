@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Portal | Smart Scheduling</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Instructor.css') }}">
+
+    <style>
+        :root {
+            --olive-brand: #8ea082; 
+            --olive-brand-hover: #7a8c6f;
+        }
+        
+        .btn-olive-custom {
+            background-color: var(--olive-brand) !important;
+            border-color: var(--olive-brand) !important;
+            color: #ffffff !important;
+            transition: all 0.3s ease;
+        }
+        .btn-olive-custom:hover {
+            background-color: var(--olive-brand-hover) !important;
+            border-color: var(--olive-brand-hover) !important;
+            box-shadow: 0 4px 12px rgba(142, 160, 130, 0.3);
+        }
+
+        .room-select-cozy {
+            border-color: #cbd5e1 !important;
+            color: #334155 !important;
+            background-color: #f8fafc !important;
+            font-weight: 500 !important;
+        }
+        .room-select-cozy:focus {
+            border-color: var(--olive-brand) !important;
+            box-shadow: 0 0 0 0.25rem rgba(142, 160, 130, 0.2) !important;
+        }
+        .text-olive-muted {
+            color: #556b4f !important;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar px-5">
+        <div class="navbar-brand">
+            <a href="#">
+                <img src="{{ url_for('static', filename='images/image_1.png') }}" alt="Logo">
+            </a>
+        </div>
+        <div class="nav-right-side">
+            <a href="/login_page" class="btn-logout-nav" onclick="localStorage.clear()">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container-fluid px-5 mt-4">
+        <div class="welcome-section mb-4" id="welcomeHeader">
+            <h1 class="welcome-title">Welcome, <span id="profName">Professor</span></h1>
+            <div class="welcome-id">Instructor ID: <span id="profID">---</span></div>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="instructor-card h-100 p-4 shadow-sm bg-white rounded-4 border-0">
+                    <label class="fw-bold mb-2 small text-navy d-block">Select Semester</label>
+                    <select class="form-select form-select-custom shadow-sm" id="termSelect"></select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="instructor-card h-100 p-4 shadow-sm bg-white rounded-4 border-0">
+                    <label class="fw-bold mb-2 small text-navy d-block">Your Assigned Courses</label>
+                    <div id="courseListArea" class="course-list-vertical d-flex flex-wrap gap-2"></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="instructor-card h-100 p-4 shadow-sm bg-white rounded-4 border-0 d-flex flex-column justify-content-center">
+                    <label class="fw-bold mb-2 small text-navy d-block">Schedule Optimization</label>
+                    <button class="btn-request-slot btn btn-olive-custom w-100 fw-bold py-2 rounded-pill shadow-sm" data-bs-toggle="modal" data-bs-target="#requestModal">
+                        <i class="fa-solid fa-calendar-plus me-2"></i>Request New Slot
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-section mb-4 shadow-sm mt-4">
+            <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+                <h6 class="fw-bold mb-0 text-navy"><i class="fa-solid fa-calendar-days me-2"></i> Personal Academic Time-Grid</h6>
+                
+                <button class="btn btn-success btn-sm rounded-pill px-3 fw-bold" id="exportInstructorCSV">
+                    <i class="fa-solid fa-file-csv me-1"></i> Export Schedule CSV
+                </button>
+            </div>
+            
+            <div id="susTimeGridContainer"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="requestModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4">
+                <div class="modal-header bg-light border-0 py-3">
+                    <h5 class="modal-title fw-bold text-navy"><i class="fa-solid fa-paper-plane text-olive-muted me-2"></i>Request New Class Slot</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="slotRequestForm">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-secondary">Select Target Course</label>
+                            <select class="form-select" id="modalCourseSelect" onchange="handleCourseSelectionChange()" required></select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-secondary">Available Sections for this Course</label>
+                            <select class="form-select" id="modalSectionSelect" required></select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-secondary">Target Day</label>
+                            <select class="form-select" id="modalDaySelect" required>
+                                <option value="Sun">Sunday</option>
+                                <option value="Mon">Monday</option>
+                                <option value="Tues">Tuesday</option>
+                                <option value="Wed">Wednesday</option>
+                                <option value="Thurs">Thursday</option>
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <label class="form-label small fw-bold text-secondary">Start Time</label>
+                                <select class="form-select" id="modalStartTimeSelect" required>
+                                    <option value="08:00 AM">08:00 AM</option>
+                                    <option value="09:00 AM">09:00 AM</option>
+                                    <option value="10:00 AM">10:00 AM</option>
+                                    <option value="11:00 AM">11:00 AM</option>
+                                    <option value="12:00 PM">12:00 PM</option>
+                                    <option value="01:00 PM">01:00 PM</option>
+                                    <option value="02:00 PM">02:00 PM</option>
+                                    <option value="03:00 PM">03:00 PM</option>
+                                    <option value="04:00 PM">04:00 PM</option>
+                                    <option value="05:00 PM">05:00 PM</option>
+                                    <option value="06:00 PM">06:00 PM</option>
+                                    <option value="07:00 PM">07:00 PM</option>
+                                    <option value="08:00 PM">08:00 PM</option>
+                                    <option value="09:00 PM">09:00 PM</option>
+                                </select>
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label class="form-label small fw-bold text-secondary">End Time</label>
+                                <select class="form-select" id="modalEndTimeSelect" required>
+                                    <option value="09:50 AM">09:50 AM</option>
+                                    <option value="10:50 AM">10:50 AM</option>
+                                    <option value="11:50 AM">11:50 AM</option>
+                                    <option value="12:50 PM">12:50 PM</option>
+                                    <option value="01:50 PM">01:50 PM</option>
+                                    <option value="02:50 PM">02:50 PM</option>
+                                    <option value="03:50 PM">03:50 PM</option>
+                                    <option value="04:50 PM">04:50 PM</option>
+                                    <option value="05:50 PM">05:50 PM</option>
+                                    <option value="06:50 PM">06:50 PM</option>
+                                    <option value="07:50 PM">07:50 PM</option>
+                                    <option value="08:50 PM">08:50 PM</option>
+                                    <option value="09:50 PM">09:50 PM</option>
+                                    <option value="10:00 PM">10:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-olive-muted"><i class="fa fa-door-open me-1"></i> Available Rooms (Vacant Slots)</label>
+                            <select class="form-select room-select-cozy shadow-sm" id="modalRoomSelect" required>
+                                <option value="ONLINE">🌐 ONLINE (Virtual Class Slot)</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-secondary">Justification / Notes for Admin</label>
+                            <textarea class="form-control" id="modalNotes" rows="2" placeholder="Explain reasons for this modification request..." required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0 bg-light py-3">
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-olive-custom rounded-pill px-4" onclick="saveNewRequest()">Submit Request</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/core.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/sus_timegrid_engine.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/Instructor_logic.js') }}"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof initInstructorPortal === 'function') initInstructorPortal();
+        });
+    </script>
+</body>
+</html>
